@@ -1,0 +1,37 @@
+{
+  "name": "@enhanced-dom/mp3-tagger",
+  "version": "0.2.0",
+  "description": "Tagging utility for mp3 files",
+  "repository": "https://github.com/enhanced-dom/mp3-tagger.git",
+  "main": "config.js",
+  "scripts": {
+    "postinstall": "@enhanced-dom-husky",
+    "package": "ncc build ./dist/index.mjs -o ./dist",
+    "prebuild": "rimraf dist/*",
+    "build": "tsc -p ./tsconfig.json",
+    "postbuild": "copyfiles script.sh dist",
+    "lint": "eslint src/** --fix --config eslint.config.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "CD9B4A105290E17E0948E021DF4105107C88693C59C0B891CCC08366C51AEA990902A6A156AC87D88A2FC41422A5E1C3C4071F251F19441C4516000EC25F87DF",
+  "license": "MIT",
+  "dependencies": {
+    "node-id3": "^0.2.9",
+    "fs-extra": "^11.3.3",
+    "yargs": "^18.0.0"
+  },
+  "devDependencies": {
+    "@enhanced-dom/build": "^0.2.0",
+    "@enhanced-dom/lint": "^0.2.1",
+    "@types/node": "^20.19.27",
+    "@types/fs-extra": "^11.0.4",
+    "@types/yargs": "^17.0.33",
+    "@vercel/ncc": "^0.38.4",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  }
+}

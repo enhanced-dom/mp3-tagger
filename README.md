@@ -1,0 +1,1 @@
+Extensible babel configuration for typescript & react

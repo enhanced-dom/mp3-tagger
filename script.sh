@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the minimum Node.js version required
-MIN_NODE_VERSION="20.0.0"
+MIN_NODE_VERSION="__MIN_NODE_VERSION__"
 
 # Get the current Node.js version
 CURRENT_NODE_VERSION=$(node -v | sed 's/v//')
@@ -13,5 +13,5 @@ if [[ $(printf "%s\n" "$CURRENT_NODE_VERSION" "$MIN_NODE_VERSION" | sort -V | he
   cd "$PARENT_PATH"
   node ./index.mjs "$1"
 else
-  echo "Error: Node.js version is insufficient (needs minimum v20)"
+  echo "Error: Node.js version is insufficient (needs minimum v$MIN_NODE_VERSION)"
 fi

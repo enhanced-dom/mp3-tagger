@@ -53,6 +53,10 @@ function processFile(filePath: string) {
         return
       }
     }
+    if (!artist) {
+      logInFolder('skip', inputFilePath)
+      return
+    }
 
     // Remove extension from title
     title = title.substring(0, title.lastIndexOf('.'))
@@ -107,13 +111,17 @@ function processFiles(fileOrFolderPath: string) {
   }
 }
 
-const parsedArgs = yargs(process.argv.slice(2))
-  .command('* <fileOrFolderPath>', 'default command', (y) => {
-    y.positional('fileOrFolderPath', {
-      describe: 'path to the folder or file',
-      type: 'string',
-    })
-  })
-  .parse() as { fileOrFolderPath?: string }
-processFiles(parsedArgs.fileOrFolderPath)
+yargs(process.argv.slice(2))
+  .command(
+    '* <fileOrFolderPath>',
+    'default command',
+    (y) =>
+      y.positional('fileOrFolderPath', {
+        describe: 'path to the folder or file',
+        type: 'string',
+        demandOption: true,
+      }),
+    (args) => processFiles(args.fileOrFolderPath),
+  )
+  .parse()
 

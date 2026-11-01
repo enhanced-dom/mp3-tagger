@@ -1,15 +1,19 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
-    "module": "commonjs",
-    "target": "es2018",
-    "baseUrl": "./",
-    "inlineSourceMap": true,
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
+    "target": "es2025",
+    "types": ["node"],
+    "strict": true,
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "rootDir": "./src",
     "outDir": "dist",
-    "preserveConstEnums" : true
+    "noUncheckedIndexedAccess": true,
+    "preserveConstEnums" : true,
+    "inlineSourceMap": true,
+    "inlineSources": true
   },
   "include": [
     "src/**/*.mts",

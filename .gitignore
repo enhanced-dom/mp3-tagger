@@ -1,2 +1,12 @@
 dist
 node_modules
+# @enhanced-dom/lint
+.fallowrc.json
+.npmrc
+.nvmrc
+# end @enhanced-dom/lint
+.claude
+.devcontainer
+.rtk
+CLAUDE.md
+.vscode

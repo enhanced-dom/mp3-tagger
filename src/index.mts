@@ -1,9 +1,29 @@
+#!/usr/bin/env node
 /* global process */
 import fse from 'fs-extra'
 import * as path from 'path'
-import * as NodeID3 from 'node-id3'
+import NodeID3 from 'node-id3'
 import yargs from 'yargs'
 import { execSync } from 'child_process'
+
+// ponytail: kept in sync with package.json "engines.node" by hand, no build-time templating
+const MIN_NODE_VERSION = '22.23.2'
+
+const isVersionAtLeast = (current: string, min: string) => {
+  const c = current.split('.').map(Number)
+  const m = min.split('.').map(Number)
+  for (let i = 0; i < m.length; i++) {
+    if ((c[i] ?? 0) !== (m[i] ?? 0)) {
+      return (c[i] ?? 0) > (m[i] ?? 0)
+    }
+  }
+  return true
+}
+
+if (!isVersionAtLeast(process.versions.node, MIN_NODE_VERSION)) {
+  console.error(`Error: Node.js version is insufficient (needs minimum v${MIN_NODE_VERSION})`)
+  process.exit(1)
+}
 
 let errorFileDescriptor: number | undefined = undefined
 const logInFolder = (logType: 'skip' | 'error', filePath: string) => {
